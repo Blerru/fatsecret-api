@@ -1,8 +1,9 @@
 {
     "name": "fatsecret-api",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "An unofficial API wrapper for FatSecret made for node.js",
-    "main": "index.js",
+    "main": "./lib/main.js",
+    "types": "./lib/main.d.ts",
     "scripts": {
         "test": "jest --config jestconfig.json",
         "build": "tsc",
