@@ -4,7 +4,7 @@ import { FatSecretClient } from "../index";
 const client = new FatSecretClient({
     clientId: process.env["FATSECRET_CLIENT_ID"] || "",
     clientSecret: process.env["FATSECRET_CLIENT_SECRET"] || "",
-    scope: "basic" // I don't hav premier so I cannot test the premier features
+    scope: "premier" // I don't hav premier so I cannot test the premier features
 });
 
 describe("getFood - food.get.v2", () => {
@@ -14,10 +14,38 @@ describe("getFood - food.get.v2", () => {
     });
 });
 
+describe("getFoodAutocomplete - foods.autocomplete", () => {
+    it("should return an array of autocomplete results", async () => {
+        const result = await client.getFoodAutocomplete({ expression: "Tomato" });
+        expect(result).toBeInstanceOf(Array);
+    });
+});
+
 describe("getFoodSearch - foods.search", () => {
     it("should return an array of foods", async () => {
         const result = await client.getFoodSearch({ search_expression: "Cereal" });
-        expect(result.food).toBeDefined();
+        expect(result.food).toBeInstanceOf(Array);
+    });
+});
+
+describe("getFoodBrands - food_brands.get", () => {
+    it("should return an array of brands", async () => {
+        const result = await client.getFoodBrands({ starts_with: "Pep" });
+        expect(result).toBeInstanceOf(Array);
+    });
+});
+
+describe("getFoodCategories - food_categories.get", () => {
+    it("should return an array of categories", async () => {
+        const result = await client.getFoodCategories({});
+        expect(result).toBeInstanceOf(Array);
+    });
+});
+
+describe("getFoodSubCategories - food_sub_categories.get", () => {
+    it("should return an array of sub categories", async () => {
+        const result = await client.getFoodSubCategories({ food_category_id: 2 /* Beverage*/ });
+        expect(result).toBeInstanceOf(Array);
     });
 });
 

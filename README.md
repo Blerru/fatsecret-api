@@ -49,4 +49,4 @@ await fatSecretClient.getRecipeSearch({ search_expression: "Brownies" });
 // ... to see more methods view the official api docs
 ```
 
-> 📌 OAUTH1 is currently not currently supported. Premier methods have not been tested so bugs may exist.
+> 📌 OAUTH1 is currently not supported.

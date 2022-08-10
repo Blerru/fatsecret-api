@@ -2,7 +2,6 @@ import axios, { Axios } from "axios";
 
 import IFoodId from "../objects/foodId";
 import IFood from "../objects/food";
-import ISuggestions from "../objects/suggestions";
 import IFoodList from "../objects/foodList";
 import IFoodBrand from "../objects/foodBrand";
 import IFoodCategory from "../objects/foodCategory";
@@ -58,7 +57,7 @@ interface IGetFoodCategories {
 }
 
 interface IGetFoodSubCategories {
-    food_category_id?: number;
+    food_category_id: number;
     region?: string;
     language?: string;
 }
@@ -183,7 +182,7 @@ export default class FatSecretClient {
             ...params
         });
 
-        return <ISuggestions>response.data
+        return <string[]>response.data.suggestions.suggestion
     }
 
     async getFoodSearch(params: IGetFoodSearch) {
@@ -201,7 +200,7 @@ export default class FatSecretClient {
             ...params
         });
 
-        return (<IFoodBrand[]>response.data.food_brands);
+        return (<IFoodBrand[]>response.data.food_brands.food_brand);
     }
 
     async getFoodCategories(params: IGetFoodCategories) {
@@ -210,7 +209,7 @@ export default class FatSecretClient {
             ...params
         });
 
-        return (<IFoodCategory[]>response.data.food_categories);
+        return (<IFoodCategory[]>response.data.food_categories.food_category);
     }
 
     async getFoodSubCategories(params: IGetFoodSubCategories) {
